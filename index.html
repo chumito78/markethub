@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MarketHub · Precios cripto</title>
+  <meta name="description" content="Panel de precios de criptomonedas con variación de veinticuatro horas y alertas de precio.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="cabecera">
+    <div>
+      <h1>MarketHub</h1>
+      <p class="sub">Precios de las principales criptomonedas, actualizados cada minuto.</p>
+    </div>
+    <div class="controles">
+      <label>
+        Moneda
+        <select id="moneda">
+          <option value="eur">Euro (€)</option>
+          <option value="usd">Dólar ($)</option>
+        </select>
+      </label>
+      <button id="actualizar" type="button">Actualizar ahora</button>
+    </div>
+  </header>
+
+  <div id="avisos" class="avisos" aria-live="assertive"></div>
+
+  <main class="contenedor">
+    <section class="tarjeta">
+      <div class="fila-titulo">
+        <h2>Mercado</h2>
+        <input id="buscar" type="search" placeholder="Buscar moneda…" aria-label="Buscar moneda">
+      </div>
+      <p id="estado" class="estado">Cargando precios…</p>
+      <div class="tabla-envoltura">
+        <table>
+          <thead>
+            <tr>
+              <th class="num ocultar-movil">#</th>
+              <th>Moneda</th>
+              <th class="num">Precio</th>
+              <th class="num">24 h</th>
+              <th class="num ocultar-movil">Capitalización</th>
+              <th class="num ocultar-movil">Volumen 24 h</th>
+            </tr>
+          </thead>
+          <tbody id="cuerpo"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="tarjeta">
+      <h2>Alertas de precio</h2>
+      <p class="ayuda">Te avisamos en pantalla cuando una moneda cruce el precio que elijas. Las alertas se guardan en este navegador y funcionan mientras la página esté abierta.</p>
+      <form id="form-alerta" class="form-alerta">
+        <select id="alerta-moneda" aria-label="Moneda" required></select>
+        <select id="alerta-condicion" aria-label="Condición">
+          <option value="encima">sube por encima de</option>
+          <option value="debajo">baja por debajo de</option>
+        </select>
+        <input id="alerta-precio" type="number" step="any" min="0" placeholder="Precio" aria-label="Precio objetivo" required>
+        <button type="submit">Crear alerta</button>
+      </form>
+      <ul id="lista-alertas" class="lista-alertas"></ul>
+      <button id="permiso-notif" type="button" class="secundario" hidden>Activar avisos del sistema</button>
+    </section>
+  </main>
+
+  <footer class="pie">
+    Datos de <a href="https://www.coingecko.com/" target="_blank" rel="noopener">CoinGecko</a>. Solo información, no es asesoramiento financiero.
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
